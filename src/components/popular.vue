@@ -56,6 +56,10 @@ img {
   color: #657786;
 }
 
+.following-btn, .unfollowing-btn {
+    cursor: pointer;
+}
+
 .following-btn {
   width: 90px;
   height: 35px;
