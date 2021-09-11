@@ -1,5 +1,16 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+      <!-- popular -->
+      <Popular />
+    </div>
 </template>
+
+<script>
+import Popular from '../components/popular.vue'
+export default {
+  name: 'About',
+  components: {
+    Popular
+  }
+}
+</script>
