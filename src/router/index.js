@@ -11,9 +11,14 @@ const routes = [
     component: Main,
   },
   {
-    path: "/main/profile",
-    name: "profile",
-    component: () => import("../views/AdminSignIn.vue"),
+    path: "/main/setting",
+    name: "setting",
+    component: () => import("../views/Setting.vue"),
+  },
+  {
+    path: "/main/user",
+    name: "user",
+    component: () => import("../views/User.vue"),
   },
 ];
 
