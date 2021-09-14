@@ -10,7 +10,7 @@ import Popular from "./../components/popular";
 import Navbar from "./../components/Navbar";
 
 export default {
-  name: "Home",
+  name: "Main",
   components: {
     Popular,
     Navbar,
