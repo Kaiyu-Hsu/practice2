@@ -139,6 +139,7 @@ textarea {
   border-radius: 100px;
   color: white;
   font-size: 18px;
+  cursor: pointer;
 }
 </style>
 
