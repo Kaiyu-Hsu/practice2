@@ -22,11 +22,155 @@
     </header>
     <div class="user-info">
       <!-- background cover -->
-      <!-- avatar -->
-      <!-- btn follow -->
+      <div class="background-cover">
+        <img
+          class="cover"
+          src="https://image.cache.storm.mg/styles/smg-800x533-fp/s3/media/image/2020/11/07/20201107-092915_U13380_M651499_4ac4.jpg?itok=6KFZde7p"
+        />
+      </div>
+      <div class="avatar-btn">
+        <!-- avatar -->
+        <img
+          class="avatar"
+          src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/123ergreg-1605252021.jpg?crop=0.485xw:0.967xh;0.00980xw,0.0327xh&resize=640:*"
+        />
+        <!-- btn follow -->
+        <div class="btn-follow">編輯個人資料</div>
+      </div>
       <!-- name & account -->
+      <div class="name-account">
+        <div class="name">John Doe</div>
+        <div class="account">@heyjohn</div>
+      </div>
       <!-- info -->
+      <div class="info">
+        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
+        sint.
+      </div>
       <!-- 跟隨中 & 跟隨者 -->
+      <div class="followings-followers">
+        <div class="followings">
+          <div class="num">31個</div>
+          跟隨中
+        </div>
+        <div class="followers">
+          <div class="num">59位</div>
+          跟隨者
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.show-user {
+  background-color: white;
+}
+
+header {
+  height: 55px;
+  display: flex;
+  font-family: "Noto Sans TC", sans-serif;
+  font-style: normal;
+  .icon-back {
+    margin: 20px;
+  }
+  .name-tweets {
+    margin: 6px 20px;
+    .name {
+      font-size: 19px;
+      font-weight: 900;
+      color: #1c1c1c;
+    }
+    .tweets {
+      font-weight: 500;
+      font-size: 13px;
+      color: #657786;
+    }
+  }
+}
+
+.user-info {
+  position: relative;
+  font-family: "Noto Sans TC", sans-serif;
+  font-style: normal;
+  .background-cover {
+    .cover {
+      width: 100%;
+      height: 200px;
+      z-index: -1;
+    }
+  }
+
+  .avatar-btn {
+    display: flex;
+    justify-content: space-between;
+    max-height: 78px;
+    .avatar {
+      border: 4px solid #ffffff;
+      position: relative;
+      bottom: 64px;
+      left: 15px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+    }
+
+    .btn-follow {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 120px;
+      height: 35px;
+      font-weight: bold;
+      border: 1px solid #ff6600;
+      border-radius: 100px;
+      color: #ff6600;
+      margin: 8px 15px;
+      cursor: pointer;
+    }
+  }
+
+  .name-account {
+    position: absolute;
+    margin: 5px 15px;
+    .name {
+      font-weight: 900;
+      font-size: 19px;
+      color: #1c1c1c;
+    }
+    .account {
+      font-weight: 500;
+      font-size: 15px;
+      color: #657786;
+    }
+  }
+
+  .info {
+    position: relative;
+    top: 51px;
+    font-weight: normal;
+    font-size: 14px;
+    margin: 10px 15px;
+  }
+
+  .followings-followers {
+    position: relative;
+    top: 50px;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    margin: 0px 15px;
+    color: #657786;
+    .followings,
+    .followers {
+      display: flex;
+      margin-right: 20px;
+    }
+    .num {
+      color: #000000;
+    }
+  }
+}
+</style>
