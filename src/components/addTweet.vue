@@ -3,7 +3,7 @@
     <div class="modal-backdrop">
       <div class="modal">
         <div class="modal-header">
-          <button type="button" class="btn-close" @click="close">
+          <button type="button" class="btn-close" @click="btnClose">
             <svg
               width="16"
               height="16"
@@ -161,6 +161,9 @@ export default {
     close() {
       this.$emit("close");
       console.log(this.tweet);
+    },
+    btnClose() {
+      this.$emit("close");
     },
   },
   created() {

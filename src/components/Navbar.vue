@@ -139,7 +139,7 @@
       </router-link>
       <div class="tweet" @click="showModal">推文</div>
       <!-- use the modal component, pass in the prop -->
-      <addTweet v-if="isModalVisible" @close="closeModal" />
+      <addTweet v-if="isModalVisible" @click="showModal" @close="closeModal" />
     </div>
     <div class="log-out">
       <svg
