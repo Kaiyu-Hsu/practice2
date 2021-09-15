@@ -78,7 +78,7 @@
 }
 
 .modal-footer {
-  /* border-top: 1px solid red; */
+  //   border-top: 1px solid red;
   flex-direction: column;
   justify-content: flex-end;
 }
@@ -100,7 +100,7 @@ textarea {
   margin: 10px;
   resize: none;
   width: 500px;
-  height: 100px;
+  height: 140px;
   font-size: 18px;
   border: 0; // 外框
   outline: none; // 打字時的外框
@@ -134,7 +134,6 @@ textarea {
   height: 38px;
   position: relative;
   left: 519px;
-  top: 39px;
   background: #ff6600;
   border: 1px solid #ff6600;
   border-radius: 100px;
