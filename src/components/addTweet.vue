@@ -1,5 +1,4 @@
 <template>
-  <!-- 轉場 -->
   <transition name="modal-fade">
     <div class="modal-backdrop">
       <div class="modal">
@@ -18,11 +17,9 @@
               />
             </svg>
           </button>
-          <!-- <slot name="header"></slot> -->
         </div>
 
         <div class="modal-body">
-          <!-- <slot name="body"> -->
           <img :src="user.avatar" />
           <textarea
             rows="4"
@@ -31,11 +28,9 @@
             placeholder="有什麼新鮮事?"
             v-model="tweet"
           ></textarea>
-          <!-- </slot> -->
         </div>
 
         <footer class="modal-footer">
-          <!-- <slot name="footer">This is the default footer!</slot> -->
           <button type="button" class="btn-tweet" @click="close">推文</button>
         </footer>
       </div>
@@ -107,9 +102,14 @@ textarea {
   width: 500px;
   height: 100px;
   font-size: 18px;
-  border: 0;
-  outline: none;
+  border: 0; // 外框
+  outline: none; // 打字時的外框
+  //   沒有顯示 placeholder style
   ::placeholder {
+    font-family: "Noto Sans TC", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
     color: #9197a3;
   }
 }
