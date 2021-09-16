@@ -23,48 +23,37 @@
     <div class="user-info">
       <!-- background cover -->
       <div class="background-cover">
-        <img
-          class="cover"
-          src="https://image.cache.storm.mg/styles/smg-800x533-fp/s3/media/image/2020/11/07/20201107-092915_U13380_M651499_4ac4.jpg?itok=6KFZde7p"
-        />
+        <img class="cover" :src="user.cover" />
       </div>
       <div class="avatar-btn">
         <!-- avatar -->
-        <img
-          class="avatar"
-          src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/123ergreg-1605252021.jpg?crop=0.485xw:0.967xh;0.00980xw,0.0327xh&resize=640:*"
-        />
+        <img class="avatar" :src="user.avatar" />
         <!-- btn follow -->
         <div class="btn-follow" @click.stop.prevent="editProfile">
           編輯個人資料
         </div>
-        <!-- edit modal -->
-        <!-- <UserEdit v-if="isModalVisible" @close="closeModal" /> -->
       </div>
       <!-- name & account -->
       <div class="name-account">
-        <div class="name">John Doe</div>
-        <div class="account">@heyjohn</div>
+        <div class="name">{{ user.name }}</div>
+        <div class="account">@{{ user.account }}</div>
       </div>
       <!-- info -->
       <div class="info">
-        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-        sint.
+        {{ user.introduction }}
       </div>
       <!-- 跟隨中 & 跟隨者 -->
       <div class="followings-followers">
         <div class="followings">
-          <div class="num">31個</div>
+          <div class="num">{{ followings }}個</div>
           跟隨中
         </div>
         <div class="followers">
-          <div class="num">59位</div>
+          <div class="num">{{ followers }}位</div>
           跟隨者
         </div>
       </div>
     </div>
-    <!-- edit modal -->
-    <!-- <UserEdit v-if="isModalVisible" @close="closeModal" /> -->
   </div>
 </template>
 
@@ -182,20 +171,34 @@ header {
 </style>
 
 <script>
-// import UserEdit from "./../components/UserEdit.vue";
+import data from "./../../public/api-users-id-v2.json";
+import followers from "./../../public/api-users-id-followers-v2.json";
+import followings from "./../../public/api-users-id-followings-v2.json";
+
+const currentUser = data.userData;
+const followersNum = followers.followers.Followers.length; // 剝洋蔥逆
+const followingsNum = followings.followings.Followings.length;
+
 export default {
-  components: {
-    // UserEdit,
-  },
   data() {
     return {
-      isModalVisible: false,
+      user: {},
+      followers: "",
+      followings: "",
     };
   },
   methods: {
+    fetchData() {
+      this.user = currentUser;
+      this.followers = followersNum;
+      this.followings = followingsNum;
+    },
     editProfile() {
       this.$emit("open-edit-modal");
     },
+  },
+  created() {
+    this.fetchData();
   },
 };
 </script>
