@@ -5,6 +5,7 @@
       <!-- ShowUser -->
       <ShowUser />
       <!-- UserTabs -->
+      <UserTabs />
       <!-- 推文 -->
     </div>
     <Popular />
@@ -27,6 +28,7 @@
 import Popular from "./../components/popular";
 import Navbar from "./../components/Navbar";
 import ShowUser from "./../components/ShowUser";
+import UserTabs from "./../components/UserTabs";
 
 export default {
   name: "User",
@@ -34,6 +36,7 @@ export default {
     Popular,
     Navbar,
     ShowUser,
+    UserTabs,
   },
 };
 </script>
