@@ -18,7 +18,7 @@
             </svg>
           </button>
           <div class="title">編輯個人資料</div>
-          <div class="save-btn">儲存</div>
+          <div class="save-btn" @click="save">儲存</div>
         </div>
         <div class="pic">
           <!-- background cover -->
@@ -94,7 +94,7 @@
           <form action="" id="edit-form">
             <div class="input-wrapper">
               <span>名稱</span>
-              <input type="text" v-model="name" />
+              <input type="text" v-model="name" maxlength="50" />
               <hr />
               <div class="words-num">{{ name.length }}/50</div>
             </div>
@@ -300,11 +300,32 @@ export default {
     };
   },
   methods: {
-    close() {
-      this.$emit("close");
+    save() {
+      console.log(this.name, this.info);
+      if (this.name.trim().length || this.info.trim().length === 0) {
+        alert("尚有空白請填寫完畢!");
+      } else {
+        this.$emit("close");
+      }
     },
     btnClose() {
       this.$emit("close");
+    },
+  },
+  watch: {
+    name: {
+      handler: function () {
+        if (this.name.length === 50) {
+          alert("名稱的字數到達上限!");
+        }
+      },
+    },
+    info: {
+      handler: function () {
+        if (this.info.length === 160) {
+          alert("自我介紹的字數到達上限!");
+        }
+      },
     },
   },
 };
