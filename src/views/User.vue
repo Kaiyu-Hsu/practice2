@@ -3,11 +3,13 @@
     <Navbar />
     <div class="profile">
       <!-- ShowUser -->
-      <ShowUser />
+      <ShowUser @open-edit-modal="openModal" />
       <!-- UserTabs -->
       <UserTabs />
       <!-- 推文 -->
     </div>
+    <!-- edit modal -->
+    <UserEdit v-if="isModalVisible" @close="closeModal" />
     <Popular />
   </div>
 </template>
@@ -30,6 +32,7 @@ import Popular from "./../components/popular";
 import Navbar from "./../components/Navbar";
 import ShowUser from "./../components/ShowUser";
 import UserTabs from "./../components/UserTabs";
+import UserEdit from "./../components/UserEdit.vue";
 
 export default {
   name: "User",
@@ -38,6 +41,20 @@ export default {
     Navbar,
     ShowUser,
     UserTabs,
+    UserEdit,
+  },
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
+  methods: {
+    openModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
   },
 };
 </script>
