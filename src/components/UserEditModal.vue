@@ -23,10 +23,7 @@
         <div class="pic">
           <!-- background cover -->
           <div class="cover-container">
-            <img
-              class="cover"
-              src="https://image.cache.storm.mg/styles/smg-800x533-fp/s3/media/image/2020/11/07/20201107-092915_U13380_M651499_4ac4.jpg?itok=6KFZde7p"
-            />
+            <img class="cover" :src="user.cover" />
             <div class="cover-icon">
               <div class="camera">
                 <svg
@@ -64,10 +61,7 @@
           </div>
           <div class="avatar-container">
             <!-- avatar -->
-            <img
-              class="avatar"
-              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/123ergreg-1605252021.jpg?crop=0.485xw:0.967xh;0.00980xw,0.0327xh&resize=640:*"
-            />
+            <img class="avatar" :src="user.avatar" />
             <div class="camera">
               <svg
                 width="20"
@@ -94,9 +88,9 @@
           <form action="" id="edit-form">
             <div class="input-wrapper">
               <span>名稱</span>
-              <input type="text" v-model="name" maxlength="50" />
+              <input type="text" v-model="user.name" maxlength="50" />
               <hr />
-              <div class="words-num">{{ name.length }}/50</div>
+              <div class="words-num">{{ user.name.length }}/50</div>
             </div>
             <div class="input-wrapper">
               <span>自我介紹</span>
@@ -104,10 +98,10 @@
                 rows="4"
                 cols="50"
                 maxlength="160"
-                v-model="info"
+                v-model="user.introduction"
               ></textarea>
               <!-- <hr /> -->
-              <div class="words-num">{{ info.length }}/160</div>
+              <div class="words-num">{{ user.introduction.length }}/160</div>
             </div>
           </form>
         </div>
@@ -292,41 +286,58 @@
 </style>
 
 <script>
+import data from "./../../public/api-users-id-v2.json";
 export default {
   data() {
     return {
-      name: "",
-      info: "",
+      user: {},
+      oringinalName: "",
+      oringinalIntro: "",
     };
   },
   methods: {
+    fetchData() {
+      this.user = data.userData;
+      this.oringinalName = data.userData.name;
+      this.oringinalIntro = data.userData.introduction;
+    },
     save() {
-      console.log(this.name, this.info);
-      if (this.name.trim().length || this.info.trim().length === 0) {
+      if (
+        this.user.name.trim().length === 0 ||
+        this.user.introduction.trim().length === 0
+      ) {
         alert("尚有空白請填寫完畢!");
       } else {
         this.$emit("close");
+        console.log(this.user.name, this.user.introduction);
       }
     },
     btnClose() {
+      this.user.name = this.oringinalName;
+      this.user.introduction = this.oringinalIntro;
       this.$emit("close");
     },
   },
+  created() {
+    this.fetchData();
+  },
   watch: {
-    name: {
-      handler: function () {
-        if (this.name.length === 50) {
-          alert("名稱的字數到達上限!");
-        }
+    user: [
+      {
+        handler: function () {
+          if (this.user.name.length === 50) {
+            alert("名稱的字數到達上限!");
+          }
+        },
       },
-    },
-    info: {
-      handler: function () {
-        if (this.info.length === 160) {
-          alert("自我介紹的字數到達上限!");
-        }
+      {
+        handler: function () {
+          if (this.user.introduction.length === 160) {
+            alert("自我介紹的字數到達上限!");
+          }
+        },
       },
-    },
+    ],
   },
 };
 </script>
