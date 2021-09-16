@@ -1,8 +1,26 @@
 <template>
   <div class="user-tabs">
-    <div class="tweets active">推文</div>
-    <div class="repliers">推文與回覆</div>
-    <div class="liked">喜歡的內容</div>
+    <div
+      class="tweets"
+      :class="{ active: $route.name == 'tweets' }"
+      @click.stop.prevent="tweets"
+    >
+      推文
+    </div>
+    <div
+      class="repliers"
+      :class="{ active: $route.name == 'replied' }"
+      @click.stop.prevent="replied"
+    >
+      推文與回覆
+    </div>
+    <div
+      class="liked"
+      :class="{ active: $route.name == 'likes' }"
+      @click.stop.prevent="likes"
+    >
+      喜歡的內容
+    </div>
   </div>
 </template>
 
@@ -10,7 +28,7 @@
 .user-tabs {
   border-bottom: 1px solid #e6ecf0;
   position: relative;
-  top: 80px;
+  top: 50px;
   display: flex;
   font-family: "Noto Sans TC", sans-serif;
   font-style: normal;
@@ -33,3 +51,19 @@
   }
 }
 </style>
+
+<script>
+export default {
+  methods: {
+    tweets() {
+      this.$router.push({ name: "tweets" });
+    },
+    replied() {
+      this.$router.push({ name: "replied" });
+    },
+    likes() {
+      this.$router.push({ name: "likes" });
+    },
+  },
+};
+</script>

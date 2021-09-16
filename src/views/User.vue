@@ -7,6 +7,7 @@
       <!-- UserTabs -->
       <UserTabs />
       <!-- 推文 -->
+      <router-view />
     </div>
     <!-- edit modal -->
     <UserEditModal v-if="isModalVisible" @close="closeModal" />
