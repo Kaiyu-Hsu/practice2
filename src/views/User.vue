@@ -9,7 +9,7 @@
       <!-- 推文 -->
     </div>
     <!-- edit modal -->
-    <UserEdit v-if="isModalVisible" @close="closeModal" />
+    <UserEditModal v-if="isModalVisible" @close="closeModal" />
     <Popular />
   </div>
 </template>
@@ -32,7 +32,7 @@ import Popular from "./../components/popular";
 import Navbar from "./../components/Navbar";
 import ShowUser from "./../components/ShowUser";
 import UserTabs from "./../components/UserTabs";
-import UserEdit from "./../components/UserEdit.vue";
+import UserEditModal from "../components/UserEditModal.vue";
 
 export default {
   name: "User",
@@ -41,7 +41,7 @@ export default {
     Navbar,
     ShowUser,
     UserTabs,
-    UserEdit,
+    UserEditModal,
   },
   data() {
     return {
