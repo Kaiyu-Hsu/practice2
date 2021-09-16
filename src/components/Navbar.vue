@@ -138,8 +138,6 @@
         </div>
       </router-link>
       <div class="tweet" @click="showModal">推文</div>
-      <!-- use the modal component, pass in the prop -->
-      <addTweet v-if="isModalVisible" @click="showModal" @close="closeModal" />
     </div>
     <div class="log-out">
       <svg
@@ -159,6 +157,8 @@
       </svg>
       <span>登出</span>
     </div>
+    <!-- use the modal component, pass in the prop -->
+    <addTweet v-if="isModalVisible" @click="showModal" @close="closeModal" />
   </div>
 </template>
 

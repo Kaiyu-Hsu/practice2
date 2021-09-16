@@ -35,7 +35,11 @@
           src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/123ergreg-1605252021.jpg?crop=0.485xw:0.967xh;0.00980xw,0.0327xh&resize=640:*"
         />
         <!-- btn follow -->
-        <div class="btn-follow">編輯個人資料</div>
+        <div class="btn-follow" @click.stop.prevent="editProfile">
+          編輯個人資料
+        </div>
+        <!-- edit modal -->
+        <!-- <UserEdit v-if="isModalVisible" @close="closeModal" /> -->
       </div>
       <!-- name & account -->
       <div class="name-account">
@@ -59,6 +63,8 @@
         </div>
       </div>
     </div>
+    <!-- edit modal -->
+    <!-- <UserEdit v-if="isModalVisible" @close="closeModal" /> -->
   </div>
 </template>
 
@@ -174,3 +180,22 @@ header {
   }
 }
 </style>
+
+<script>
+// import UserEdit from "./../components/UserEdit.vue";
+export default {
+  components: {
+    // UserEdit,
+  },
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
+  methods: {
+    editProfile() {
+      this.$emit("open-edit-modal");
+    },
+  },
+};
+</script>
