@@ -1,16 +1,16 @@
 <template>
   <div class="a-tweet-container">
-    <!-- <div class="a-tweet" v-for="tweet in tweets" :key="tweet.id"> -->
-    <div class="a-tweet">
-      <!-- <img :src="user.avatar" class="avatar" /> -->
-      <img class="avatar" />
+    <div class="a-tweet" v-for="like in likes" :key="like.TweetId">
+      <img :src="like.tweet.user.avatar" class="avatar" />
       <div class="content">
         <div class="name-account">
-          <div class="name">drbthnrbtb</div>
+          <div class="name">{{ like.tweet.user.name }}</div>
           <!-- TODO  時間要簡化 -->
-          <div class="account">@123</div>
+          <div class="account">
+            @{{ like.tweet.user.account }}・{{ like.createdAt }}
+          </div>
         </div>
-        <div class="description">dfthbrtbhrt hrtnr</div>
+        <div class="description">{{ like.tweet.description }}</div>
         <div class="replies-likes">
           <div class="replies">
             <div class="replies-icon">
@@ -27,23 +27,25 @@
                 />
               </svg>
             </div>
+            <!-- TODO 回覆數量 -->
             <div class="replies-num">13</div>
           </div>
           <div class="likes">
             <div class="likes-icon">
               <svg
-                width="15"
-                height="15"
-                viewBox="0 0 15 15"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M7.5 13.5236H7.49125C5.87687 13.4936 1.21875 9.28489 1.21875 5.29864C1.21875 3.38364 2.79687 1.70239 4.59562 1.70239C6.02687 1.70239 6.98937 2.68989 7.49937 3.40864C8.00812 2.69114 8.97062 1.70239 10.4025 1.70239C12.2025 1.70239 13.78 3.38364 13.78 5.29927C13.78 9.28427 9.12125 13.493 7.50687 13.5224H7.5V13.5236ZM4.59625 2.64052C3.29625 2.64052 2.15687 3.88302 2.15687 5.29989C2.15687 8.88739 6.55312 12.5474 7.50062 12.5861C8.44937 12.5474 12.8444 8.88802 12.8444 5.29989C12.8444 3.88302 11.705 2.64052 10.405 2.64052C8.825 2.64052 7.9425 4.47552 7.935 4.49364C7.79125 4.84489 7.2125 4.84489 7.06812 4.49364C7.05937 4.47489 6.1775 2.64052 4.59687 2.64052H4.59625Z"
-                  fill="#657786"
+                  d="M12 21.6381H11.986C9.40295 21.5901 1.94995 14.8561 1.94995 8.47812C1.94995 5.41412 4.47495 2.72412 7.35295 2.72412C9.64295 2.72412 11.183 4.30412 11.999 5.45412C12.813 4.30612 14.353 2.72412 16.644 2.72412C19.524 2.72412 22.048 5.41412 22.048 8.47912C22.048 14.8551 14.594 21.5891 12.011 21.6361H12V21.6381Z"
+                  fill="#E0245E"
                 />
               </svg>
             </div>
+            <!-- TODO 按讚數量 -->
             <div class="likes-num">52</div>
           </div>
         </div>
@@ -109,10 +111,14 @@
       .likes {
         display: flex;
         margin-right: 52px;
+        align-items: center;
         .replies-icon,
         .likes-icon {
           margin-right: 12px;
         }
+      }
+      .likes-num {
+        color: #e0245e;
       }
     }
   }
@@ -121,5 +127,27 @@
 
 <script>
 // TODO 載入資料
-export default {};
+import data from "./../../public/api-users-id-likes-v2.json";
+// TODO api-users-id-replied-tweets-v2.json 沒有包含userData 由另一個資料載入
+import userData from "./../../public/api-users-id-tweets-v2.json";
+
+export default {
+  data() {
+    return {
+      likes: [],
+      user: {},
+    };
+  },
+  methods: {
+    fetchData() {
+      this.user = userData.userData;
+      this.likes = data.likedTweets;
+    },
+  },
+  created() {
+    this.fetchData();
+    console.log(this.user);
+    console.log(this.likes);
+  },
+};
 </script>
