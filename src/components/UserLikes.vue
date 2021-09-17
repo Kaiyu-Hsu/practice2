@@ -5,9 +5,8 @@
       <div class="content">
         <div class="name-account">
           <div class="name">{{ like.tweet.user.name }}</div>
-          <!-- TODO  時間要簡化 -->
           <div class="account">
-            @{{ like.tweet.user.account }}・{{ like.createdAt }}
+            @{{ like.tweet.user.account }}・{{ like.createdAt | fromNow }}
           </div>
         </div>
         <div class="description">{{ like.tweet.description }}</div>
@@ -126,18 +125,20 @@
 </style>
 
 <script>
-// TODO 載入資料
 import data from "./../../public/api-users-id-likes-v2.json";
 // TODO api-users-id-replied-tweets-v2.json 沒有包含userData 由另一個資料載入
 import userData from "./../../public/api-users-id-tweets-v2.json";
+import { fromNowFilter } from "./../../utils/mixins"; // 時間簡化套件
 
 export default {
+  name: "UserLikes",
   data() {
     return {
       likes: [],
       user: {},
     };
   },
+  mixins: [fromNowFilter],
   methods: {
     fetchData() {
       this.user = userData.userData;

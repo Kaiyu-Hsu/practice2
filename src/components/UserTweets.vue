@@ -5,8 +5,9 @@
       <div class="content">
         <div class="name-account">
           <div class="name">{{ user.name }}</div>
-          <!-- TODO  時間要簡化 -->
-          <div class="account">@{{ user.account }}・{{ tweet.createdAt }}</div>
+          <div class="account">
+            @{{ user.account }}・{{ tweet.createdAt | fromNow }}
+          </div>
         </div>
         <div class="description">
           {{ tweet.description }}
@@ -120,6 +121,7 @@
 
 <script>
 import data from "./../../public/api-users-id-tweets-v2.json";
+import { fromNowFilter } from "./../../utils/mixins"; // 時間簡化套件
 
 export default {
   data() {
@@ -130,6 +132,7 @@ export default {
       likes: "",
     };
   },
+  mixins: [fromNowFilter],
   methods: {
     fetchUserData() {
       this.user = data.userData;

@@ -5,9 +5,8 @@
       <div class="content">
         <div class="name-account">
           <div class="name">{{ user.name }}</div>
-          <!-- TODO  時間要簡化 -->
           <div class="account">
-            @{{ user.account }}・{{ replied.createdAt }}
+            @{{ user.account }}・{{ replied.createdAt | fromNow }}
           </div>
         </div>
         <div class="replied-account">
@@ -35,6 +34,7 @@
             <div class="replies-num">13</div>
           </div>
           <div class="likes">
+            <!-- TODO 轉換按讚圖示 @click -->
             <div class="likes-icon">
               <svg
                 width="15"
@@ -138,6 +138,7 @@
 import data from "./../../public/api-users-id-replied-tweets-v2.json";
 // TODO api-users-id-replied-tweets-v2.json 沒有包含userData 由另一個資料載入
 import userData from "./../../public/api-users-id-tweets-v2.json";
+import { fromNowFilter } from "./../../utils/mixins"; // 時間簡化套件
 
 export default {
   data() {
@@ -146,6 +147,7 @@ export default {
       replieds: [],
     };
   },
+  mixins: [fromNowFilter],
   methods: {
     fetchData() {
       this.user = userData.userData;
