@@ -1,16 +1,18 @@
 <template>
   <div class="a-tweet-container">
-    <!-- <div class="a-tweet" v-for="tweet in tweets" :key="tweet.id"> -->
-    <div class="a-tweet">
-      <!-- <img :src="user.avatar" class="avatar" /> -->
-      <img class="avatar" />
+    <div class="a-tweet" v-for="replied in replieds" :key="replied.TweetId">
+      <img :src="user.avatar" class="avatar" />
       <div class="content">
         <div class="name-account">
-          <div class="name">drbthnrbtb</div>
+          <div class="name">{{ user.name }}</div>
           <!-- TODO  時間要簡化 -->
-          <div class="account">@123</div>
+          <div class="account">@{{ user.account }}</div>
         </div>
-        <div class="description">dfthbrtbhrt hrtnr</div>
+        <div class="replied-account">
+          回覆
+          <div class="at-account">@{{ replied.tweet.user.account }}</div>
+        </div>
+        <div class="description">{{ replied.comment }}</div>
         <div class="replies-likes">
           <div class="replies">
             <div class="replies-icon">
@@ -27,6 +29,7 @@
                 />
               </svg>
             </div>
+            <!-- TODO 回覆數量 -->
             <div class="replies-num">13</div>
           </div>
           <div class="likes">
@@ -44,6 +47,7 @@
                 />
               </svg>
             </div>
+            <!-- TODO 按讚數量 -->
             <div class="likes-num">52</div>
           </div>
         </div>
@@ -93,6 +97,15 @@
         color: #657786;
       }
     }
+    .replied-account {
+      display: flex;
+      font-weight: 500;
+      color: #657786;
+      .at-account {
+        color: #ff6600;
+        margin-left: 5px;
+      }
+    }
 
     .description {
       min-height: 66px;
@@ -120,6 +133,27 @@
 </style>
 
 <script>
-// TODO 載入資料
-export default {};
+import data from "./../../public/api-users-id-replied-tweets-v2.json";
+// TODO api-users-id-replied-tweets-v2.json 沒有包含userData 由另一個資料載入
+import userData from "./../../public/api-users-id-tweets-v2.json";
+
+export default {
+  data() {
+    return {
+      user: {},
+      replieds: [],
+    };
+  },
+  methods: {
+    fetchData() {
+      this.user = userData.userData;
+      this.replieds = data.repliedTweets;
+    },
+  },
+  created() {
+    this.fetchData();
+    console.log(this.user);
+    console.log(this.replieds);
+  },
+};
 </script>
