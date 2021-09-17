@@ -6,7 +6,9 @@
         <div class="name-account">
           <div class="name">{{ user.name }}</div>
           <!-- TODO  時間要簡化 -->
-          <div class="account">@{{ user.account }}</div>
+          <div class="account">
+            @{{ user.account }}・{{ replied.createdAt }}
+          </div>
         </div>
         <div class="replied-account">
           回覆
