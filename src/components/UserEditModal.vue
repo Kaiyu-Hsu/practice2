@@ -25,6 +25,7 @@
           <div class="cover-container">
             <img class="cover" :src="user.cover" />
             <div class="cover-icon">
+              <!-- TODO 更改背景圖片 -->
               <div class="camera">
                 <svg
                   width="20"
@@ -43,6 +44,7 @@
                   />
                 </svg>
               </div>
+              <!-- TODO 取消更改 -->
               <div class="delete">
                 <svg
                   width="24"
@@ -62,6 +64,7 @@
           <div class="avatar-container">
             <!-- avatar -->
             <img class="avatar" :src="user.avatar" />
+            <!-- TODO 更改頭像 -->
             <div class="camera">
               <svg
                 width="20"
