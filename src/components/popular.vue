@@ -28,6 +28,7 @@
 <style scoped>
 .container {
   position: fixed;
+  z-index: -1;
   top: 15px;
   left: 75%;
   background: #f5f8fa;
@@ -120,6 +121,7 @@ export default {
     fetchUsers() {
       this.users = popularJSON;
     },
+    // TODO map 查找示範
     toggleFollowing(userId) {
       this.users = this.users.map((user) => {
         if (user.userId === userId) {
