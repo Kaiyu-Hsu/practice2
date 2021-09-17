@@ -121,6 +121,7 @@ export default {
     fetchUsers() {
       this.users = popularJSON;
     },
+    // TODO map 查找示範
     toggleFollowing(userId) {
       this.users = this.users.map((user) => {
         if (user.userId === userId) {
