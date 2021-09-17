@@ -329,6 +329,8 @@ export default {
             alert("名稱的字數到達上限!");
           }
         },
+        deep: true,
+        immediate: true,
       },
       {
         handler: function () {
@@ -336,6 +338,8 @@ export default {
             alert("自我介紹的字數到達上限!");
           }
         },
+        deep: true,
+        immediate: true,
       },
     ],
   },

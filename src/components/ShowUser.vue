@@ -16,8 +16,8 @@
         </svg>
       </div>
       <div class="name-tweets">
-        <div class="name">John Doe</div>
-        <div class="tweets">25推文</div>
+        <div class="name">{{ user.name }}</div>
+        <div class="tweets">{{ tweetsNum }}推文</div>
       </div>
     </header>
     <div class="user-info">
@@ -183,6 +183,7 @@ export default {
   data() {
     return {
       user: {},
+      tweetsNum: "",
       followers: "",
       followings: "",
     };
@@ -190,6 +191,7 @@ export default {
   methods: {
     fetchData() {
       this.user = currentUser;
+      this.tweetsNum = data.userTweets.length;
       this.followers = followersNum;
       this.followings = followingsNum;
     },
