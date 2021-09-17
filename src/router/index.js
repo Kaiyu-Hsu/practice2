@@ -24,6 +24,7 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: () => import("../views/User.vue"),
+    redirect: "/profile/tweets",
     children: [
       {
         path: "tweets",
